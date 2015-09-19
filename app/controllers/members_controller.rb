@@ -42,10 +42,11 @@ class MembersController < ApplicationController
     #出力したい形式を指定することができるrespond to do |format|
   end
 
-  private 
+  private
   def member_params
     params[:member].permit(:name)
   end
+  
 
   # PATCH/PUT /members/1
   # PATCH/PUT /members/1.json
