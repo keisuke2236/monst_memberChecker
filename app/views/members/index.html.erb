@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>モンストマルチ評価ページ</h1>
+<div>
+  モンストマルチのメンバー評価を行うページです<br />
+  公正に評価を行いましょう<br />
+  評価基準を示します<br />
+  優良：問題なくプレイ出来た
+  普通：プレイ開始まで少し待ったがプレイが問題なく出来た<br />
+  悪い：プレイすることが残念ながら出来なかった<br />
+  ※ゲームのクリアしたかどうかなどは評価に含めないでください。<br />
+  ※しかし、プレイ中に寝落ちしたり、切断された場合は評価に含めてください。<br />
+  ※このサイトはあくまで、みんなが仲良くモンストをやるために作ったものです<br />
+</div>
+
+<table border="1px">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>優良</th>
+      <th>普通</th>
+      <th>悪い</th>
+      <th colspan="3">編集</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.name %></td>
+        <td><%= member.good %></td>
+        <td><%= member.nomal %></td>
+        <td><%= member.bad %></td>
+        <td><%= link_to '詳細', member %></td>
+        <td><%= link_to '編集', edit_member_path(member) %></td>
+        <td><%= link_to '削除', member, method: :delete, data: { confirm: '本当に削除しますか' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Member', new_member_path %>
