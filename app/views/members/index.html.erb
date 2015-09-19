@@ -27,7 +27,7 @@
   <tbody>
     <% @members.each do |member| %>
       <tr>
-        <td><%= member.name %></td>
+        <td><%= link_to member.name, member_path(member.id)%></td>
         <td><%= member.good %></td>
         <td><%= member.nomal %></td>
         <td><%= member.bad %></td>

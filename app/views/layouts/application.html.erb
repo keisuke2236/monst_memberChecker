@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= image_tag("logo.png", :size => "250x210", :alt => "アイコン") %>
 <%= yield %>
+<%= link_to "home", members_path %>
 
 </body>
 </html>

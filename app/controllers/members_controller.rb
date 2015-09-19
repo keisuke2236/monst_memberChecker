@@ -10,6 +10,7 @@ class MembersController < ApplicationController
   # GET /members/1
   # GET /members/1.json
   def show
+    @mem = Member.find(params[:id])
   end
 
   # GET /members/new
@@ -17,24 +18,33 @@ class MembersController < ApplicationController
     @member = Member.new
   end
 
+
+
   # GET /members/1/edit
   def edit
   end
+
+  def hello
+    render :text => 'Hello!'
+  end
+
+
 
   # POST /members
   # POST /members.json
   def create
     @member = Member.new(member_params)
+    @member.good = 0
+    @member.nomal = 0
+    @member.bad = 0
+    @member.save
+    redirect_to "/members/"
+    #出力したい形式を指定することができるrespond to do |format|
+  end
 
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to @member, notice: "新規メンバーが追加されました" }
-        format.json { render :show, status: :created, location: @member }
-      else
-        format.html { render :new }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
+  private 
+  def member_params
+    params[:member].permit(:name)
   end
 
   # PATCH/PUT /members/1
@@ -42,7 +52,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: "メンバーの情報更新が完了しました" }
+        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit }
@@ -56,7 +66,7 @@ class MembersController < ApplicationController
   def destroy
     @member.destroy
     respond_to do |format|
-      format.html { redirect_to members_url, notice: "メンバーが削除されました" }
+      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +81,4 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:name, :good, :nomal, :bad)
     end
-end
+  end

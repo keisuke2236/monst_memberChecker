@@ -8,17 +8,20 @@
 <p>
   <strong>Good:</strong>
   <%= @member.good %>
+
+ 
 </p>
 
 <p>
   <strong>Nomal:</strong>
   <%= @member.nomal %>
+
 </p>
 
 <p>
   <strong>Bad:</strong>
   <%= @member.bad %>
+  
 </p>
-
 <%= link_to 'Edit', edit_member_path(@member) %> |
 <%= link_to 'Back', members_path %>
