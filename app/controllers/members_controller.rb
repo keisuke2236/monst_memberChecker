@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update]
+  before_action :set_member, only: [:show, :edit, :update, :addGood, :addNomal, :addBad, :delGood, :delNomal, :delBad]
 
   # GET /members
   # GET /members.json
@@ -37,37 +37,31 @@ class MembersController < ApplicationController
   end
 
   def addGood
-    @member = Member.find_by(params[:id])
     @member.update_attribute :good, @member.good+1
     redirect_to members_path
   end
 
   def addNomal
-    @member = Member.find_by(params[:id])
     @member.update_attribute :nomal, @member.nomal+1
     redirect_to members_path
   end
 
   def addBad
-    @member = Member.find_by(params[:id])
     @member.update_attribute :bad, @member.bad+1
     redirect_to members_path
   end
 
   def delGood
-    @member = Member.find_by(params[:id])
     @member.update_attribute :good, @member.good-1
     redirect_to members_path
   end
 
   def delNomal
-    @member = Member.find_by(params[:id])
     @member.update_attribute :nomal, @member.nomal-1
     redirect_to members_path
   end
 
   def delBad
-    @member = Member.find_by(params[:id])
     @member.update_attribute :bad, @member.bad-1
     redirect_to members_path
   end
@@ -81,7 +75,7 @@ class MembersController < ApplicationController
     @member.nomal = 0
     @member.bad = 0
     if @member.save
-      redirect_to members_path
+      redirect_to "/admin"
     else
       render 'new'
     end
@@ -89,17 +83,18 @@ class MembersController < ApplicationController
   end
 
   def update
-    Member.find_by(id: params[:id]).update_attribute :good ,params[:member][:good]
-    Member.find_by(id: params[:id]).update_attribute :nomal ,params[:member][:nomal]
-    Member.find_by(id: params[:id]).update_attribute :bad ,params[:member][:bad]
-    redirect_to members_path
+    @member.update_attribute :good ,params[:member][:good]
+    @member.update_attribute :nomal ,params[:member][:nomal]
+    @member.update_attribute :bad ,params[:member][:bad]
+    
+    redirect_to "/admin"
   end
 
 
   
   def destroy
     Member.find(params[:id]).destroy
-    redirect_to members_path
+    redirect_to "/admin"
   end
 
   private

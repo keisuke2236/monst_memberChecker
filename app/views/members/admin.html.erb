@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
-
-<h1>モンストマルチ管理ページ</h1>
-<div>
+<hr>
+<h1 align="center">モンストマルチ管理ページ</h1>
+<hr>
+<p>
   モンストマルチのメンバー評価を行うページです<br />
-  不正に評価されたのを直してあげましょう
-  手作業になりますがすみません。
-</div>
+  新規メンバーの追加や編集ができます。<br />
+  明らかに不正に評価されたのを直してあげましょう<br />
+</p>
 
-<table border="1px">
+<p>
+<table border="1px" align="center">
   <thead>
     <tr>
       <th>名前</th>
@@ -32,8 +34,9 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<p>
-  <%= link_to '新規メンバー追加', new_member_path %>
 </p>
+<p style="font-size:18px">
+  <%= link_to '新規メンバーの追加', new_member_path %>
+</p>
+<hr>
+

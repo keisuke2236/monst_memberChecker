@@ -8,12 +8,12 @@
   
 </head>
 <body>
-
-<%= image_tag("logo.png", :size => "250x210", :alt => "アイコン") %>
-
+<p align="center" style="width:100%">
+	<%= image_tag("logo.png", :size => "250x210", :alt => "アイコン") %>
+</p>
 <%= yield %>
-
-<%= link_to "home", members_path %>
-
+<p>
+<%= link_to "一般トップページへ戻る", members_path %>
+</p>
 </body>
 </html>
