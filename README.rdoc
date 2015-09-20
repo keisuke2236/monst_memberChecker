@@ -1,5 +1,21 @@
 == README
 
+他人を評価するサイト
+
+管理者ページ
+
+/admin
+
+
+一般ユーザページ
+
+/members
+
+
+3段階評価
+
+例としてモンスト
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
