@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>モンストマルチ管理ページ</h1>
+<div>
+  モンストマルチのメンバー評価を行うページです<br />
+  不正に評価されたのを直してあげましょう
+  手作業になりますがすみません。
+</div>
+
+<table border="1px">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>優良</th>
+      <th>普通</th>
+      <th>悪い</th>
+      <th colspan="3">編集</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @members.each do |member| %>
+    <tr>
+      <td><%= link_to member.name, member_path(member.id)%></td>
+      <td><%= member.good %></td>
+      <td><%= member.nomal %></td>
+      <td><%= member.bad %></td>
+      <td><%= link_to '評価', member %></td>
+      <td><%= link_to '編集', edit_member_path(member) %></td>
+      <td><%= link_to 'ユーザの削除', member_path(member.id), method: :delete ,data: {confirm: "この人のすべてのデータが消えます本当によろしいですか？"} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<p>
+  <%= link_to '新規メンバー追加', new_member_path %>
+</p>

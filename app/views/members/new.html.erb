@@ -1,14 +1,17 @@
 <h1>新規登録</h1>
 
-<%= form_tag({ controller: :members, action: :create}) do %>
-  名前：<%= text_field :box1, :name %>
-  送信：<%= submit_tag :send %>
+<!-- エラーがあったら表示する -->
+<% if @member.errors.any? %>
+	<%= @member.errors.messages[:name][0] %>
 <% end %>
 
 
 <%= form_for @member do |f| %>
-	<%= f.label :名前 %>
+	<%= f.label :名前 %>	
+
 	<%= f.text_field :name %>
 	<%= f.submit %>
 <% end %>
+
+
 <%= link_to '戻る', members_path %>

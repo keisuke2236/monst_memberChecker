@@ -31,9 +31,8 @@
         <td><%= member.good %></td>
         <td><%= member.nomal %></td>
         <td><%= member.bad %></td>
-        <td><%= link_to '詳細', member %></td>
-        <td><%= link_to '編集', edit_member_path(member) %></td>
-        <td><%= link_to '削除', member, method: :delete, data: { confirm: '本当に削除しますか' } %></td>
+        <td><%= link_to '評価', member %></td>
+        
       </tr>
     <% end %>
   </tbody>
@@ -41,4 +40,3 @@
 
 <br>
 
-<%= link_to '新規メンバー追加', new_member_path %>

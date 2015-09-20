@@ -1,11 +1,16 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :update]
 
   # GET /members
   # GET /members.json
   def index
     @members = Member.all.order("good DESC")
   end
+
+  def admin
+    @members = Member.all.order("good DESC")
+  end
+  
 
   # GET /members/1
   # GET /members/1.json
@@ -22,12 +27,50 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+    @aid = Member.find(params[:id])
+
   end
 
   def hello
     render :text => 'Hello!'
+
   end
 
+  def addGood
+    @member = Member.find_by(params[:id])
+    @member.update_attribute :good, @member.good+1
+    redirect_to members_path
+  end
+
+  def addNomal
+    @member = Member.find_by(params[:id])
+    @member.update_attribute :nomal, @member.nomal+1
+    redirect_to members_path
+  end
+
+  def addBad
+    @member = Member.find_by(params[:id])
+    @member.update_attribute :bad, @member.bad+1
+    redirect_to members_path
+  end
+
+  def delGood
+    @member = Member.find_by(params[:id])
+    @member.update_attribute :good, @member.good-1
+    redirect_to members_path
+  end
+
+  def delNomal
+    @member = Member.find_by(params[:id])
+    @member.update_attribute :nomal, @member.nomal-1
+    redirect_to members_path
+  end
+
+  def delBad
+    @member = Member.find_by(params[:id])
+    @member.update_attribute :bad, @member.bad-1
+    redirect_to members_path
+  end
 
 
   # POST /members
@@ -37,39 +80,26 @@ class MembersController < ApplicationController
     @member.good = 0
     @member.nomal = 0
     @member.bad = 0
-    @member.save
-    redirect_to "/members/"
+    if @member.save
+      redirect_to members_path
+    else
+      render 'new'
+    end
     #出力したい形式を指定することができるrespond to do |format|
   end
 
-  private
-  def member_params
-    params[:member].permit(:name)
-  end
-  
-
-  # PATCH/PUT /members/1
-  # PATCH/PUT /members/1.json
   def update
-    respond_to do |format|
-      if @member.update(member_params)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
-        format.json { render :show, status: :ok, location: @member }
-      else
-        format.html { render :edit }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
+    Member.find_by(id: params[:id]).update_attribute :good ,params[:member][:good]
+    Member.find_by(id: params[:id]).update_attribute :nomal ,params[:member][:nomal]
+    Member.find_by(id: params[:id]).update_attribute :bad ,params[:member][:bad]
+    redirect_to members_path
   end
 
-  # DELETE /members/1
-  # DELETE /members/1.json
+
+  
   def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    Member.find(params[:id]).destroy
+    redirect_to members_path
   end
 
   private

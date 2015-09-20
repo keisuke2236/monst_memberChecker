@@ -1,27 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @member.name %>
+	<strong>Name:</strong>
+	<%= @member.name %>
 </p>
 
 <p>
-  <strong>Good:</strong>
-  <%= @member.good %>
-
- 
+	<strong>優良:</strong>
+	<%= @member.good %>
+	<p>
+		<%= link_to '+【追加】', :controller => "members", :action => "addGood" %>
+		<%= link_to '-【減少】', :controller => "members", :action => "delGood" %>
+	</p>
 </p>
 
 <p>
-  <strong>Nomal:</strong>
-  <%= @member.nomal %>
-
+	<strong>普通:</strong>
+	<%= @member.nomal %>
+	<p>
+		<%= link_to '+【追加】', :controller => "members", :action => "addNomal" %>
+		<%= link_to '-【減少】', :controller => "members", :action => "delNomal" %>
+	</p>
 </p>
 
 <p>
-  <strong>Bad:</strong>
-  <%= @member.bad %>
-  
+	<strong>悪い:</strong>
+	<%= @member.bad %>
+	<p>
+		<%= link_to '+【追加】', :controller => "members", :action => "addBad"  %>
+		<%= link_to '-【減少】', :controller => "members", :action => "delBad"  %>
+	</p>
 </p>
 <%= link_to 'Edit', edit_member_path(@member) %> |
 <%= link_to 'Back', members_path %>
